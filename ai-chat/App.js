@@ -1,16 +1,14 @@
-import { StatusBar, setStatusBarBackgroundColor } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { ActivityIndicator, Alert, Button, Keyboard, KeyboardAvoidingView, Modal, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
+import { useState } from 'react';
+import { Keyboard, Modal, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import 'react-native-url-polyfill/auto';
 import axios from 'axios';
 import Markdown from 'react-native-markdown-display';
 import { Prism } from 'react-syntax-highlighter';
 import { duotoneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import * as Animatable from 'react-native-animatable';
-// api key sk-ff6aa93c89f74573b6381b7c19494165
 import { PacmanIndicator } from 'react-native-indicators';
-import { Dropdown } from 'react-native-element-dropdown';
-import { ToastProvider, useToast, Toast } from 'react-native-toast-notifications';
+import { ToastProvider, Toast } from 'react-native-toast-notifications';
 
 const api_key = 'sk-ff6aa93c89f74573b6381b7c19494165'
 
@@ -22,13 +20,6 @@ export default function App() {
   const [modalVisible, setModalVisible] = useState(false)
   const [model, setModel] = useState('Ничего не выбрано')
   const [isProg, setIsProg] = useState(false)
-
-  const ToastNotification = () => {
-    const toast = useToast();
-    useEffect(() => {
-      toast.show("Модель изменена на генерацию кода.");
-    }, [])
-  }
 
   const generatedResult = () => {
     Keyboard.dismiss()
@@ -73,7 +64,7 @@ export default function App() {
       setLoading(false)
     })
     .catch((error) => {
-      console.log(error);
+      Toast.show()
     });
   }
 
@@ -134,12 +125,6 @@ export default function App() {
   );
 }
 
-function ModalScreen() {
-  return (
-    <Modal/>
-  );
-}
-
 function FinishResult({request, result}) {
 
   const renderers = {
@@ -149,7 +134,7 @@ function FinishResult({request, result}) {
       </Prism>
     )
   }
-  //const text = result.toString()
+
   return (
     <View style={{marginBottom: 20}}>
       <Markdown style={markdownStyles} renderers={renderers}>{result}</Markdown>

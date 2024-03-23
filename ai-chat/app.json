@@ -15,8 +15,7 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.catindaglasses.aichat"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -30,7 +29,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "2d90dc21-996f-4818-b6be-7c41d1642a02"
+        "projectId": "5c4c3cc0-a5f2-4ef0-84a5-352e33763124"
       }
     }
   }
